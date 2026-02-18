@@ -34,7 +34,8 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        # Verwendung von install statt ci, falls package-lock.json nicht committet wurde
+        run: npm install
 
       - name: Build
         run: npm run build
