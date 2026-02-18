@@ -15,38 +15,41 @@ export const PainPointsScreen: React.FC<StepProps> = ({ onNext, isActive, data }
   return (
     <div className="flex flex-col h-full justify-center slide-in">
       <div className="w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-[#2C2C2C] mb-2 text-center">
+        
+        <div className="typo-super text-accent-1 mb-4">Status Quo</div>
+
+        <h2 className="typo-headline text-4xl text-text mb-2">
           Hand aufs Herz
         </h2>
-        <p className="text-gray-500 text-center mb-8">
-          Was bremst dich gerade am meisten?
+        <p className="typo-body text-text/60 mb-8">
+          Was ist der größte <span className="font-mint text-2xl text-accent-1">Bremsklotz</span>?
         </p>
 
         <div className="space-y-3">
           <CardButton
             title="Content-Hamsterrad"
-            subtitle="Ich poste viel, aber es bringt zu wenig."
+            subtitle="Viel Aufwand, wenig Ertrag."
             icon={<Repeat size={20} />}
             onClick={() => handleSelect('Hamsterrad')}
             selected={data?.painPoint === 'Hamsterrad'}
           />
           <CardButton
             title="Technik-Dschungel"
-            subtitle="Website, Ads & Co. kosten mich nur Nerven."
+            subtitle="Website & Co. nerven nur."
             icon={<Settings size={20} />}
             onClick={() => handleSelect('Technik')}
             selected={data?.painPoint === 'Technik'}
           />
           <CardButton
             title="Kein roter Faden"
-            subtitle="Mein Marketing ist eher Zufallsprinzip."
+            subtitle="Marketing nach Zufallsprinzip."
             icon={<Shuffle size={20} />}
             onClick={() => handleSelect('Planlos')}
             selected={data?.painPoint === 'Planlos'}
           />
           <CardButton
             title="Zu wenig Zeit"
-            subtitle="Das Tagesgeschäft frisst meine Sichtbarkeit."
+            subtitle="Das Tagesgeschäft frisst alles."
             icon={<Clock size={20} />}
             onClick={() => handleSelect('Zeit')}
             selected={data?.painPoint === 'Zeit'}

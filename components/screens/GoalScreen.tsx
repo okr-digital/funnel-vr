@@ -15,12 +15,12 @@ export const GoalScreen: React.FC<StepProps> = ({ onNext, isActive, data }) => {
   return (
     <div className="flex flex-col h-full justify-center slide-in">
       <div className="w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-[#2C2C2C] mb-2 text-center">
+        
+        <div className="typo-super text-accent-1 mb-4">Vision</div>
+
+        <h2 className="typo-headline text-4xl text-text mb-8">
           Dein Gipfelziel 🏔️
         </h2>
-        <p className="text-gray-500 text-center mb-8">
-          Wo soll die Reise idealerweise hingehen?
-        </p>
 
         <div className="space-y-4">
           <CardButton
@@ -31,15 +31,15 @@ export const GoalScreen: React.FC<StepProps> = ({ onNext, isActive, data }) => {
             selected={data?.goal === 'Bekanntheit'}
           />
           <CardButton
-            title="Mehr Umsatz / Kunden"
+            title="Mehr Umsatz"
             subtitle="Der Kalender soll voll werden."
             icon={<TrendingUp size={24} />}
             onClick={() => handleSelect('Umsatz')}
             selected={data?.goal === 'Umsatz'}
           />
           <CardButton
-            title="Mitarbeiter finden"
-            subtitle="Wir brauchen gute Leute im Team."
+            title="Team aufbauen"
+            subtitle="Wir brauchen gute Leute."
             icon={<UserPlus size={24} />}
             onClick={() => handleSelect('Recruiting')}
             selected={data?.goal === 'Recruiting'}

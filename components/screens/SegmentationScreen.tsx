@@ -16,13 +16,16 @@ export const SegmentationScreen: React.FC<StepProps> = ({ onNext, isActive, data
   return (
     <div className="flex flex-col h-full justify-center slide-in">
       <div className="w-full max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-[#2C2C2C] mb-8 text-center">
-          Dein aktuelles Business-Setup?
+        
+        <div className="typo-super text-accent-1 mb-4">Setup</div>
+
+        <h2 className="typo-headline text-4xl text-text mb-8">
+          Wie bist du aktuell <br/> <span className="text-accent-1 italic">aufgestellt?</span>
         </h2>
 
         <div className="space-y-4">
           <CardButton
-            title="Einzelunternehmer:in (EPU)"
+            title="Einzelunternehmer:in"
             subtitle="Ich mache aktuell fast alles selbst."
             icon={<User size={24} />}
             onClick={() => handleSelect('EPU')}

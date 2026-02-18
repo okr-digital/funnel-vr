@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ProgressBar } from './components/ProgressBar';
 import { WelcomeScreen } from './components/screens/WelcomeScreen';
 import { SegmentationScreen } from './components/screens/SegmentationScreen';
@@ -19,13 +19,46 @@ export default function App() {
     painPoint: null,
   });
 
-  // Updated to 7 steps
+  const appRef = useRef<HTMLDivElement>(null);
+
   const TOTAL_STEPS = 7;
 
-  // Scroll to top on step change for mobile consistency
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentStep]);
+
+  // IFRAME COMMUNICATION: Sende Höhe an Eltern-Fenster
+  useEffect(() => {
+    const sendHeight = () => {
+      if (appRef.current) {
+        const height = appRef.current.scrollHeight;
+        // Nachricht an Parent-Window senden
+        window.parent.postMessage({ 
+          type: 'RATZFATZ_RESIZE', 
+          height: height 
+        }, '*');
+      }
+    };
+
+    // Observer, der auf Größenänderungen reagiert
+    const resizeObserver = new ResizeObserver(() => {
+      sendHeight();
+    });
+
+    if (appRef.current) {
+      resizeObserver.observe(appRef.current);
+      // Initial send
+      sendHeight();
+    }
+
+    // Listener für Fenster-Resize
+    window.addEventListener('resize', sendHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener('resize', sendHeight);
+    };
+  }, [currentStep]); // Auch feuern, wenn sich der Step ändert
 
   const nextStep = (newData?: Partial<typeof data>) => {
     if (newData) {
@@ -43,16 +76,16 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#2C2C2C] font-sans selection:bg-[#D4AF37] selection:text-white overflow-hidden">
+    <div ref={appRef} className="min-h-screen bg-bg-1 text-text font-hauora selection:bg-accent-2 selection:text-text overflow-hidden relative">
       
       {/* Top Bar */}
       <ProgressBar currentStep={currentStep} totalSteps={TOTAL_STEPS} />
 
-      {/* Back Button - Visible only after first screen */}
+      {/* Back Button */}
       {currentStep > 0 && (
         <button 
           onClick={prevStep}
-          className="fixed top-6 left-4 z-50 p-2 text-gray-400 hover:text-[#D4AF37] transition-colors rounded-full hover:bg-gray-50 backdrop-blur-sm"
+          className="fixed top-6 left-4 z-50 p-2 text-accent-1 hover:text-accent-2 transition-colors rounded-full hover:bg-bg-2/50 backdrop-blur-sm"
           aria-label="Zurück"
         >
           <ChevronLeft size={28} />
@@ -61,8 +94,6 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="w-full max-w-xl mx-auto min-h-screen flex flex-col p-6 pt-24 pb-12 relative">
-        
-        {/* Render Active Step */}
         <div className="flex-grow relative">
             {currentStep === 0 && <WelcomeScreen isActive={true} onNext={nextStep} />}
             {currentStep === 1 && <SegmentationScreen isActive={true} onNext={nextStep} data={data} />}
@@ -74,9 +105,10 @@ export default function App() {
         </div>
       </main>
 
-      {/* Decorative Background Elements (Alpine feel) */}
-      <div className="fixed top-[-10%] right-[-10%] w-[50vh] h-[50vh] bg-gradient-to-b from-[#D4AF37]/5 to-transparent rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="fixed bottom-[-10%] left-[-10%] w-[60vh] h-[60vh] bg-gradient-to-t from-gray-100 to-transparent rounded-full blur-3xl -z-10 pointer-events-none" />
+      {/* Decorative Background Elements */}
+      <div className="fixed top-[-10%] right-[-10%] w-[50vh] h-[50vh] bg-accent-1/10 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="fixed bottom-[-10%] left-[-10%] w-[60vh] h-[60vh] bg-bg-2/60 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="fixed top-[40%] right-[10%] w-[20vh] h-[20vh] bg-accent-2/5 rounded-full blur-2xl -z-10 pointer-events-none" />
 
     </div>
   );
