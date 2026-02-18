@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://okr-digital.github.io/saas-impact-simulator/",
+  "homepage": "https://okr-digital.github.io/funnel-vr/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

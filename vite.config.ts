@@ -5,7 +5,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // WICHTIG: Der base-Pfad muss exakt dem Repository-Namen entsprechen
-  base: '/saas-impact-simulator/',
+  // URL: https://okr-digital.github.io/funnel-vr/ -> base: '/funnel-vr/'
+  base: '/funnel-vr/',
   build: {
     outDir: 'dist',
     sourcemap: false
