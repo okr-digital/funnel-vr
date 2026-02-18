@@ -14,7 +14,7 @@
     <link rel="canonical" href="https://okr-digital.github.io/funnel-vr/" />
     <title>Ratzfatz sichtbar - Verena Ratz</title>
     
-    <!-- Google Fonts: Manrope (für Hauora), Fraunces (für Canela), La Belle Aurore (für Mint+Magnolia) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400&family=La+Belle+Aurore&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
@@ -67,59 +67,48 @@
         overscroll-behavior-y: none;
       }
       
-      /* 
-         Typografie Klassen basierend auf Guidelines 
-         Web-Konvertierung: 1pt ≈ 1.33px, aber oft 1:1 in Design-Specs.
-         Ich verwende hier explizite Pixelwerte für Präzision.
-      */
-
-      /* Überüberschrift & Buttons: Hauora Semibold, 18pt, Caps, Spacing 50 (0.05em) */
       .typo-super {
         font-family: 'Manrope', sans-serif;
-        font-weight: 600; /* Semibold */
+        font-weight: 600;
         font-size: 18px; 
         text-transform: uppercase;
         letter-spacing: 0.05em; 
         line-height: 1;
-        white-space: nowrap; /* Nur 1 Zeile */
+        white-space: nowrap;
       }
 
-      /* Überschrift: Canela Text Light, 50pt, Spacing -20 (-0.02em), LH 1.3 */
       .typo-headline {
         font-family: 'Fraunces', serif;
-        font-weight: 300; /* Light */
-        font-size: 38px; /* Mobile Fallback */
+        font-weight: 300;
+        font-size: 38px;
         letter-spacing: -0.02em; 
         line-height: 1.3;
       }
       @media (min-width: 640px) {
         .typo-headline {
-          font-size: 50px; /* Desktop Zielgröße */
+          font-size: 50px;
         }
       }
 
-      /* Fließtext: Hauora Medium, 20pt, Spacing 0, LH 1.4 */
       .typo-body {
         font-family: 'Manrope', sans-serif;
-        font-weight: 500; /* Medium */
-        font-size: 18px; /* Mobile Fallback etwas kleiner */
+        font-weight: 500;
+        font-size: 18px;
         letter-spacing: 0;
         line-height: 1.4;
       }
       @media (min-width: 640px) {
         .typo-body {
-          font-size: 20px; /* Desktop Zielgröße */
+          font-size: 20px;
         }
       }
 
-      /* Highlights: Mint+Magnolia, LH 0.8 */
       .typo-highlight {
         font-family: 'La Belle Aurore', cursive;
         letter-spacing: 0;
         line-height: 0.8;
       }
 
-      /* Animations */
       .slide-in {
         animation: slideIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
       }
@@ -150,19 +139,18 @@
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
     "react": "https://esm.sh/react@^19.2.4",
-    "vite": "https://esm.sh/vite@^7.3.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
     "lucide-react": "https://esm.sh/lucide-react@^0.574.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
   }
 }
 </script>
 </head>
   <body>
     <div id="root"></div>
-    <!-- CRITICAL FIX: Use ./ relative path instead of / absolute path -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>
