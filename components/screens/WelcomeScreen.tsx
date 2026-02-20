@@ -21,7 +21,7 @@ export const WelcomeScreen: React.FC<StepProps> = ({ onNext, isActive }) => {
         
         {/* Body */}
         <p className="typo-body text-lg md:text-xl text-text/80 mb-12 fade-in-up" style={{ animationDelay: '0.2s' }}>
-          Griaß di! Lass uns kurz schauen, wo wir dein Marketing-Potential noch verbessern können.
+          Griaß di! Lass uns kurz schauen, wie wir dein Marketing-Potential noch besser nutzen können.
         </p>
 
         {/* Button */}
